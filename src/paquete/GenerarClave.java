@@ -9,7 +9,6 @@ public class GenerarClave
 {
     private String car="", clave="", dig = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789@$%^&*#!?/:;<>,.";
     private int pos;
-    private boolean min, may, num, esp, general;
     private Random obr = new Random();
     
     public void GClave()
@@ -21,9 +20,12 @@ public class GenerarClave
     
     public void Comprobar()
     {
-        do
+        if(clave.length()==8)
         {
-            boolean min=false, may=false, num=false, esp=false, general=false;
+            boolean general=false;
+            do
+            {
+                boolean min=false, may=false, num=false, esp=false;
                 for (pos = 0; pos < 8; pos++)
                 {
                     car=""+clave.charAt(pos);
@@ -42,23 +44,30 @@ public class GenerarClave
                                     esp=true;
                         }
                     }
-                }
                 if((min==true)&&(may==true)&&(num==true)&&(esp==true))
                 {
                     general=true;
                     break;
                 }
-                else
+                }
+                if(general!=true)
+                {
                     this.GClave();
-        }
+                }
+            }
         while(general==false);
+        }
+        else
+        {
+            System.out.println("La clave no es de 8 digitos, siendo este un requisito");
+            clave="";
+        }
     }    
         public void Mostrar()
         {
             this.GClave();
             this.Comprobar();
             System.out.println(clave);
-            
         }
     }
 
