@@ -55,7 +55,7 @@ public class GenerarClave
                     this.GClave();
                 }
             }
-        while(general==false);
+            while(general==false);
         }
         else
         {
@@ -68,6 +68,7 @@ public class GenerarClave
             this.GClave();
             this.Comprobar();
             System.out.println(clave);
+            
         }
     }
 
