@@ -51,9 +51,7 @@ public class GenerarClave
                 }
                 }
                 if(general!=true)
-                {
                     this.GClave();
-                }
             }
             while(general==false);
         }
@@ -63,12 +61,12 @@ public class GenerarClave
             clave="";
         }
     }    
-        public void Mostrar()
+        public String Mostrar()
         {
             this.GClave();
             this.Comprobar();
             System.out.println(clave);
-            
+            return clave;
         }
     }
 
