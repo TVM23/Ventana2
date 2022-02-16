@@ -8,11 +8,9 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Tadeo
- */
 public class JFrameCrearCuenta extends javax.swing.JFrame {
+    
+    public String claves[];
 
     /**
      * Creates new form JFrameCrearCuenta
@@ -77,6 +75,11 @@ public class JFrameCrearCuenta extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(51, 153, 255));
         jLabel14.setText("Generar contraseña");
         jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Crear Cuenta");
@@ -165,6 +168,18 @@ public class JFrameCrearCuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        //esto es del boton generar contrasena
+        String contra = clv.Mostrar();
+        jPasswordField1.setText(contra);
+        jPasswordField2.setText(contra);
+        /*Password objPassword = new Password(8);
+        String clave = objPassword.generarContra();
+        */
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+        GenerarClave clv = new GenerarClave();
+    
     /**
      * @param args the command line arguments
      */
