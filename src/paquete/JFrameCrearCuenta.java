@@ -4,14 +4,23 @@
  */
 package paquete;
 
+import LogicaNegocio.Password;
+import LogicaNegocio.Usuario;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class JFrameCrearCuenta extends javax.swing.JFrame {
     
-    public String claves[];
+    //public String claves[];
+    //JFrameVentana objVentana = new JFrameVentana();
+    public static ArrayList<Usuario> objUsuarios = new ArrayList<Usuario>();
 
+    public  ArrayList<Usuario> getUsuarios(){
+        return objUsuarios;
+    }
     /**
      * Creates new form JFrameCrearCuenta
      */
@@ -83,6 +92,11 @@ public class JFrameCrearCuenta extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Crear Cuenta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,15 +184,35 @@ public class JFrameCrearCuenta extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         //esto es del boton generar contrasena
-        String contra = clv.Mostrar();
-        jPasswordField1.setText(contra);
-        jPasswordField2.setText(contra);
-        /*Password objPassword = new Password(8);
+        //GenerarClave clv = new GenerarClave();
+        //String contra = clv.Mostrar();
+        //jPasswordField1.setText(contra);
+        //jPasswordField2.setText(contra);
+        Password objPassword = new Password(8);
         String clave = objPassword.generarContra();
-        */
+        System.out.println("Contrasena: " + clave);
+        jPasswordField1.setText(clave);
+        jPasswordField2.setText(clave);
+        
     }//GEN-LAST:event_jLabel14MouseClicked
 
-        GenerarClave clv = new GenerarClave();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFrameVentana objVentana = new JFrameVentana();
+        String nombre = jTextField1.getText();
+        String correo = jTextField2.getText();
+        String clave = String.valueOf(jPasswordField1.getPassword());
+        System.out.println(clave);
+        Usuario objUsuario = new Usuario(nombre, correo, clave);
+        System.out.println("Clave Recibida " +clave);
+        objUsuarios.add(objUsuario);
+        //Imprimir en consola el arreglo
+        System.out.println(objUsuarios);
+        //Indicar a usuario que todo coorecto
+        JOptionPane.showMessageDialog(this, "Cuenta creada con exito, ya puedes iniciar sesion", "Registro", JOptionPane.INFORMATION_MESSAGE);
+        //Esto sirve para cerrar ventana y guardar array
+        this.setVisible(false);
+        objVentana.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     /**
      * @param args the command line arguments
