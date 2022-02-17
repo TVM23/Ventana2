@@ -3,19 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package paquete;
-
+import LogicaNegocio.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Tadeo
  */
 public class JFrameVentana extends javax.swing.JFrame {
-
+    JFrameCrearCuenta objCrearCuenta;
+    //JFrameCrearCuenta objCrearCuenta = new JFrameCrearCuenta();
     /**
      * Creates new form JFrameVentana
      */
     public JFrameVentana() {
         initComponents();
         setLocationRelativeTo(null);
+        //JFrameCrearCuenta objCrearCuenta = new JFrameCrearCuenta();
     }
 
     /**
@@ -31,9 +34,9 @@ public class JFrameVentana extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        CuadroContra = new javax.swing.JPasswordField();
+        CuadroNombre = new javax.swing.JTextField();
+        BotonIniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lblCrearCuenta = new javax.swing.JLabel();
 
@@ -52,9 +55,14 @@ public class JFrameVentana extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel3.setText("Contraseña:");
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Aceptar");
+        BotonIniciarSesion.setBackground(new java.awt.Color(204, 204, 204));
+        BotonIniciarSesion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        BotonIniciarSesion.setText("Aceptar");
+        BotonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarSesionActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sesion.jpg"))); // NOI18N
 
@@ -78,7 +86,7 @@ public class JFrameVentana extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BotonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(189, 189, 189))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -91,8 +99,8 @@ public class JFrameVentana extends javax.swing.JFrame {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                        .addComponent(jTextField1))))
+                                        .addComponent(CuadroContra, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                        .addComponent(CuadroNombre))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -106,16 +114,16 @@ public class JFrameVentana extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CuadroNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblCrearCuenta)
                         .addGap(26, 26, 26)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(CuadroContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(BotonIniciarSesion)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -129,6 +137,34 @@ public class JFrameVentana extends javax.swing.JFrame {
         JFrameCrearCuenta objCrearCuenta = new JFrameCrearCuenta();
         objCrearCuenta.setVisible(true);
     }//GEN-LAST:event_lblCrearCuentaMouseClicked
+
+    private void BotonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionActionPerformed
+        JFrameCrearCuenta CrearCuenta = new JFrameCrearCuenta();
+        //System.out.println(CrearCuenta.getUsuarios());
+        boolean control=false;
+        if(!(CrearCuenta.getUsuarios().isEmpty()))
+        {
+            for (Usuario usuario : CrearCuenta.getUsuarios()) 
+            {
+                if((usuario.getNombre().equals(this.CuadroNombre.getText()))&&(usuario.getContrasena().equals(String.valueOf(this.CuadroContra.getPassword()))))
+                {
+                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Inicio de sesion", JOptionPane.INFORMATION_MESSAGE);
+                    control=true;
+                    dispose();
+                    break;
+                }
+            }
+            if(control!=true)
+            {
+                JOptionPane.showMessageDialog(this, "La cuenta ingresada no existe, ingrese nuevamente", "Inicio de sesion", JOptionPane.CANCEL_OPTION);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No hay usuarios registrados", "Inicio de sesion", JOptionPane.ERROR_MESSAGE);
+            System.out.print("NO HAY USUSARIOS REGISTRADOS");
+        }
+    }//GEN-LAST:event_BotonIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,14 +202,14 @@ public class JFrameVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonIniciarSesion;
+    private javax.swing.JPasswordField CuadroContra;
+    private javax.swing.JTextField CuadroNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCrearCuenta;
     // End of variables declaration//GEN-END:variables
 }
