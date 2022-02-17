@@ -8,47 +8,57 @@ import java.util.Random;
 
 public class Password {
     private int tamano;
+    private String contrasena;
     
-    public Password(int tamano)
+    public Password(int tam)
     {
-        int tam=tamano;
+        tamano=tam;
+        contrasena="";
+    }
+    
+    public Password(String clave)
+    {
+        tamano = clave.length();
+        contrasena = clave;
+        
     }
     
     public String generarContra()
     {
-        String contra="";
         int valor;
         for(int i = 0; i<tamano; i++)
         {
             Random rnd = new Random();
-            valor = rnd.nextInt(5);
+            valor = rnd.nextInt(4);
             switch(valor)
             {
                 case 0:
-                    contra+=generarLetraMayuscula();
+                    contrasena+=generarLetraMayuscula();
                     break;
                 case 1:
-                    contra+=generarLetraMinuscula();
+                    contrasena+=generarLetraMinuscula();
                     break;
                 case 2:
-                    contra+=generarNumeros();
+                    contrasena+=generarNumeros();
                     break;
-                //case 3:
-                    //contra+=generarCaracterEspecial();
-                   //break;
+                case 3:
+                    contrasena+=generarCaracterEspecial();
+                   break;
             }
         }
-        return contra;
+        return contrasena;
     }
     
     public char generarLetraMayuscula()
     {
-        return(char)(int)(Math.random()*90+65);
+        //rango de 65-90
+        return(char)(int)(Math.random()*26+65);
+        //genera 26 numeros iniciando desde 65
     }
     
     public char generarLetraMinuscula()
     {
-        return(char)(int)(Math.random()*122+97);
+        return(char)(int)(Math.random()*26+97);
     }
     
     public int generarNumeros()
@@ -58,6 +68,7 @@ public class Password {
     
     public char generarCaracterEspecial()
     {
-        return(char)(int)(Math.random()*90+65);
+        char[] caracteresEspeciales = {',', '@', '#', '$', '%', '^', '&', '(', ')', '?','<','>','!'};
+        return caracteresEspeciales[(int)(Math.random()*13+0)];
     }
 }
